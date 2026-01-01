@@ -618,6 +618,27 @@
         color: var(--color-dark);
     }
 
+    .report-img-preview {
+        max-width: 100%;
+        max-height: 200px;
+        /* จำกัดความสูงไม่ให้ Modal ยาวเกินไป */
+        width: auto;
+        display: block;
+        margin: 5px auto;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .report-choice-img {
+        max-width: 100%;
+        max-height: 120px;
+        /* รูปในช้อยส์ให้เล็กกว่ารูปโจทย์หน่อย */
+        width: auto;
+        display: block;
+        margin-top: 5px;
+        border-radius: 4px;
+    }
+
     #report-choices-list {
         margin-top: 10px;
         padding-left: 0;
@@ -946,21 +967,21 @@
 
 <body>
     <div class="container">
-    
+
         <!-- Report Modal Card -->
         <div id="report-card" class="modal-card">
             <div class="modal-body">
                 <h5 class="modal-title" style="color: var(--color-wrong);">แจ้งปัญหาและเสนอแนวทางแก้ไข</h5>
-    
+
                 <!-- Section 1: Question Being Reported (Red/Error Tinge) -->
                 <div id="report-question-details" class="modal-section"
                     style="text-align: left; background-color: #fff3f3; border: 2px solid #dc3545; padding: 15px;">
-    
+
                     <h6 style="color: #dc3545; font-size: 1.3rem; margin-bottom: 5px;">โจทย์ที่พบปัญหา:</h6>
                     <p id="report-question-text" class="small-text"
                         style="font-weight: 700; color: var(--color-text); margin-bottom: 15px; font-size: 3rem; line-height: 1.3;">
                     </p>
-    
+
                     <div style="border-top: 1px dashed #dc3545; padding-top: 10px;">
                         <h6 style="font-size: 1.2rem; margin-top: 5px; margin-bottom: 5px;">ตัวเลือกที่มี (Choices):
                         </h6>
@@ -969,12 +990,12 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <!-- Section 2: Suggested Correction (Green/Success Tinge) -->
                 <div class="modal-section" style="text-align: left; background-color: #f0fff0; border: 2px solid #28a745;">
-    
+
                     <h6 style="color: #28a745; font-size: 1.3rem;">เสนอคำตอบที่ถูกต้อง / แก้ไข</h6>
-    
+
                     <!-- Option 1: Select from existing -->
                     <p class="small-text" style="margin-bottom: 5px; font-weight: 700; color: #333;">1.
                         เลือกจากตัวเลือกเดิม:
@@ -983,7 +1004,7 @@
                         style="width: 100%; padding: 10px; margin-bottom: 10px; font-size: 1.4rem; border-radius: 5px; border: 2px solid #28a745; background-color: #fff; cursor: pointer; transition: all 0.3s ease;"></select>
                     <option value="">-- เลือกข้อที่ถูกต้องจากตัวเลือกด้านบน --</option>
                     </select>
-    
+
                     <!-- Option 2: Suggest new -->
                     <p class="small-text" style="margin-bottom: 5px; font-weight: 700; color: #333;">2. หรือ
                         พิมพ์คำตอบใหม่
@@ -991,21 +1012,21 @@
                     <input type="text" id="report-new-choice-input" placeholder="พิมพ์คำตอบที่ถูกต้องใหม่"
                         style="width: 100%; padding: 0.75rem; border-radius: 5px; border: 1px solid #ced4da; font-size: 1rem; box-sizing: border-box;">
                 </div>
-    
+
                 <!-- Section 3: Reason/Explanation (Primary Tinge) -->
                 <div class="modal-section" style="text-align: left; background-color: #f8f9fa; border: 1px solid #dee2e6;">
                     <h6 style="color: var(--color-primary); font-size: 1.5rem;">รายละเอียด/เหตุผลของปัญหา</h6>
                     <textarea id="report_text" placeholder="ระบุเหตุผลที่โจทย์/เฉลยผิด, หรือรายละเอียดปัญหาอื่นๆ ให้ชัดเจนที่สุด..."
                         style="width: 100%; min-height: 100px; font-size: 1.2rem;"></textarea>
                 </div>
-    
+
                 <div class="controls-container">
                     <button id="submit-report" class="quiz-button btn-dark">Submit Report</button>
                     <button id="cancel-report" class="quiz-button btn-light">Cancel</button>
                 </div>
             </div>
         </div>
-    
+
         <!-- NEW Progress Save/Load Modal -->
         <div id="progress-modal-card" class="modal-card">
             <div class="modal-body">
@@ -1013,7 +1034,7 @@
                     <button id="close-progress-modal" class="quiz-button btn-light">ปิด</button>
                 </div>
                 <h5 class="modal-title">บันทึก / ทำต่อจากครั้งก่อน</h5>
-    
+
                 <!-- Export Section -->
                 <div class="modal-section">
                     <h6>ส่งออกความคืบหน้าปัจจุบัน</h6>
@@ -1024,7 +1045,7 @@
                         <button id="modal-export-copy-btn" class="quiz-button btn-export">Copy Code</button>
                     </div>
                 </div>
-    
+
                 <!-- Import Section -->
                 <div class="modal-section">
                     <h6>โหลดความคืบหน้า</h6>
@@ -1038,16 +1059,16 @@
                         <button id="modal-import-btn" class="quiz-button btn-import">Load</button>
                     </div>
                 </div>
-    
+
             </div>
         </div>
-    
+
         <!-- ***** NEW PDF Choice Modal ***** -->
         <div id="pdf-choice-modal" class="modal-card">
             <div class="modal-body">
                 <h5 class="modal-title">เลือกรูปแบบการบันทึก PDF</h5>
                 <p class="small-text">กรุณาเลือกรูปแบบ PDF ที่ต้องการดาวน์โหลด</p>
-    
+
                 <!-- Option 1: Download Results -->
                 <div class="modal-section">
                     <h6>โหลดผลการทำข้อสอบ (สำหรับทบทวน)</h6>
@@ -1055,7 +1076,7 @@
                         และคำอธิบายเฉพาะข้อที่คุณได้ทำไปแล้ว</p>
                     <button id="save-results-pdf-btn" class="quiz-button btn-dark">ดาวน์โหลดผลลัพธ์</button>
                 </div>
-    
+
                 <!-- Option 2: Download Practice Sheet -->
                 <div class="modal-section">
                     <h6>โหลดชุดข้อสอบ (สำหรับทำในกระดาษ)</h6>
@@ -1063,32 +1084,32 @@
                         พร้อมเฉลยท้ายเอกสาร</p>
                     <button id="save-practice-pdf-btn" class="quiz-button btn-dark">ดาวน์โหลดชุดข้อสอบ</button>
                 </div>
-    
+
                 <div class="controls-container" style="margin-top: 1rem;">
                     <button id="close-pdf-modal-btn" class="quiz-button btn-light">ยกเลิก</button>
                 </div>
             </div>
         </div>
-    
+
         <!-- ***** NEW: Topic Selection Area (Accordion UI) ***** -->
         <div class="selection-container">
             <h2>✅ เลือกหัวข้อได้เลยย</h2>
-    
+
             <!-- NEW: Status Bar for Selected Topics -->
             <div id="selected-topics-status">
                 <p class="small-text" style="margin: 0; color: #007bff; font-weight: 700;">
                     ยังไม่ได้เลือกหัวข้อใดๆ</p>
             </div>
-    
+
             <details class="accordion-group" open>
                 <summary class="accordion-header"><i class="fas fa-book-open" style="margin-right: 10px;"></i>
                     FMT
                 </summary>
                 <div class="button-grid">
-    
+
                 </div>
             </details>
-    
+
             <details class="accordion-group">
                 <summary class="accordion-header"><i class="fas fa-file-alt" style="margin-right: 10px;"></i> MCQ1
                 </summary>
@@ -1107,7 +1128,7 @@
                         hidden><label for="gi47mcq1_microparasitepathoradio" class="toggle-button">GI47MCQ1_MicroParasitePathoRadio</label>
                 </div>
             </details>
-    
+
             <details class="accordion-group">
                 <summary class="accordion-header"><i class="fas fa-file-alt" style="margin-right: 10px;"></i> MCQ2
                 </summary>
@@ -1117,7 +1138,8 @@
                     <input type="checkbox" id="gi51mcq2_pathology" name="topics" value="gi51mcq2_pathology" hidden><label
                         for="gi51mcq2_pathology" class="toggle-button">GI51MCQ2_Pathology</label>
                     <input type="checkbox" id="gi50mcq2_microparasitepathopharmacoradio" name="topics"
-                        value="gi50mcq2_microparasitepathopharmacoradio" hidden><label for="gi50mcq2_microparasitepathopharmacoradio"
+                        value="gi50mcq2_microparasitepathopharmacoradio" hidden><label
+                        for="gi50mcq2_microparasitepathopharmacoradio"
                         class="toggle-button">GI50MCQ2_MicroParasitePathoPharmaco</label>
                     <input type="checkbox" id="gi49mcq2_anatomyphysiopharmaco" name="topics" value="gi49mcq2_anatomyphysiopharmaco"
                         hidden><label for="gi49mcq2_anatomyphysiopharmaco" class="toggle-button">GI49MCQ2_AnatomyPhysioPharmaco</label>
@@ -1127,34 +1149,34 @@
                         hidden><label for="gi47mcq2_anatomyphysiopharmaco" class="toggle-button">GI47MCQ2_AnatomyPhysioPharmaco</label>
                 </div>
             </details>
-    
+
             <details class="accordion-group">
                 <summary class="accordion-header"><i class="fas fa-file-alt" style="margin-right: 10px;"></i> MCQ3
-    
+
                 </summary>
                 <div class="button-grid">
                     <input type="checkbox" id="gi51mcq3_pharmacoradioclinical" name="topics" value="gi51mcq3_pharmacoradioclinical"
                         hidden><label for="gi51mcq3_pharmacoradioclinical" class="toggle-button">GI51MCQ3_PharmacoRadioClinical</label>
                 </div>
             </details>
-    
+
             <details class="accordion-group">
                 <summary class="accordion-header"><i class="fas fa-file-alt" style="margin-right: 10px;"></i>
                     Pharmaco(เดี๋ยวแยกช่วงสอบ)
                 </summary>
                 <div class="button-grid">
-    
+
                 </div>
             </details>
-    
+
             <details class="accordion-group">
                 <summary class="accordion-header"><i class="fas fa-robot" style="margin-right: 10px;"></i>
                     by AI</summary>
                 <div class="button-grid">
-    
+
                 </div>
             </details>
-    
+
             <div class="controls-container">
                 <button id="save" class="quiz-button">Save to PDF</button>
                 <button id="toggle-random-btn" class="quiz-button">สลับโหมดสุ่ม/เรียงลำดับ</button>
@@ -1166,7 +1188,7 @@
                 (ถัดไป), Spacebar (เลือก), Enter (ส่งคำตอบ)
             </div>
         </div>
-    
+
         <!-- Main Quiz -->
         <main id="quiz-container">
             <h1>Random Quiz | ข้อที่ <span id="questionIndex"></span> | <span id="score"></span></h1>
@@ -1188,7 +1210,7 @@
                     target="_blank">View Report Sheet</a>
             </span>
         </main>
-    
+
         <!-- Results Table -->
         <select id="submission-filter">
             <option value="all">All Submissions</option>
@@ -7725,11 +7747,9 @@
                 if (rawImg) {
                     if (rawImg.includes('///')) {
                         currentImageArray = rawImg.split('///').map(url => url.trim()).filter(Boolean);
-                        console.log(currentImageArray);
                     }
                     else {
                         currentImageArray = [rawImg];
-                        console.log(currentImageArray);
                     }
                 } else {
                     currentImageArray = [];
@@ -7867,7 +7887,6 @@
             const prevQuestion = () => {
                 if (questionIndex > 0) {
                     questionIndex--;
-                    console.log(currentQuestions[questionIndex]);
                     showQuestion();
                 }
             };
@@ -8518,20 +8537,21 @@
                 doc.save('MDKKU-Quiz-Practice.pdf');
             }
 
-            function saveReportToGoogleSheet(from, topic, question, allChoices, suggestedChoice, report, time) {
-                const url = "https://script.google.com/macros/s/AKfycbyZQ759pyx4jI5xOBfBYBxGj8dNo4OlR_vcFBYQlzc6FlM_bqJu19eErOlozGz7jwP0/exec";
+            function saveReportToGoogleSheet(from, topic, question, questionImages, allChoices, suggestedChoice, report, time) {
+                const url = "https://script.google.com/macros/s/AKfycbwGK6G28spJ4-pQWO-6aOkExD7Tfvbsh1C5zUi9LEueGIGvj9uJP3XmiYWl8GUIGpej/exec";
                 const data = {
                     from: from,
                     topic: topic,
                     question: question,
-                    allChoices: allChoices, // New Field
-                    suggestedChoice: suggestedChoice, // New Field
+                    questionImages: questionImages,
+                    allChoices: allChoices,
+                    suggestedChoice: suggestedChoice,
                     report: report,
                     time: time
                 };
                 fetch(url, {
                     method: "POST", mode: "no-cors",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
                     body: JSON.stringify(data)
                 }).then(response => {
                     console.log("Report saved to Google Sheet successfully");
@@ -8635,22 +8655,51 @@
                 $reportText.val('');
                 $reportNewChoiceInput.val('');
                 $reportCorrectChoiceSelect.empty(); // Clear previous options
+                $('#report-question-images').empty(); // Clear previous question images
 
-                // 1. Populate Question Details
+                // 1. Populate Question Text
                 const problemText = $question.text();
                 $reportQuestionText.html(problemText.replace(/\n/g, '<br>'));
 
-                // 2. Populate Choices List and Select/Dropdown
+                // 2. Populate Question Images (NEW)
+                if (current_question.img) {
+                    const imgUrls = current_question.img.split('///').map(s => s.trim()).filter(Boolean);
+                    let imgHtml = '';
+                    imgUrls.forEach(url => {
+                        imgHtml += `<img src="${transformUrl(url)}" class="report-img-preview" alt="Question Image">`;
+                    });
+                    $('#report-question-images').html(imgHtml);
+                }
+
+                // 3. Populate Choices List and Select/Dropdown (UPDATED with Images)
                 const choicesArray = (current_question.choices || "").split("///").map(s => s.trim()).filter(Boolean);
-                let choicesHtml = choicesArray.map((choice, index) =>
-                    `<p style="margin: 3px 0; font-weight: 500;">${String.fromCharCode(65 + index)}. ${choice}</p>` // ปรับการแสดงผลให้เป็น A. B. C.
-                ).join('');
+
+                // สร้าง HTML สำหรับแสดงรายการตัวเลือกใน Modal
+                let choicesHtml = choicesArray.map((choice, index) => {
+                    let choiceContent = choice;
+                    // ตรวจสอบว่าเป็น Link รูปภาพหรือไม่
+                    if (isUrl(choice)) {
+                        choiceContent = `<br><img src="${transformUrl(choice)}" class="report-choice-img" alt="Choice Image">`;
+                    }
+                    return `<p style="margin: 5px 0; font-weight: 500; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+                                <b>${String.fromCharCode(65 + index)}.</b> ${choiceContent}
+                            </p>`;
+                }).join('');
+
                 $reportChoicesList.html(choicesHtml || '<p style="margin: 3px 0; font-weight: 500;">ไม่มีตัวเลือก</p>');
 
-                let selectOptions = '<option value="newanswer"> คำตอบใหม่ (ถ้าไม่มีในตัวเลือกเดิม) </option>';
-                choicesArray.forEach(choice => {
+                // สร้าง Dropdown สำหรับเลือกคำตอบที่ถูก (Dropdown แสดงรูปไม่ได้ ให้แสดงเป็น text ว่า [Image Link])
+                let selectOptions = '<option value="newanswer">-- คำตอบใหม่ (ถ้าไม่มีในตัวเลือกเดิม) --</option>';
+                choicesArray.forEach((choice, index) => {
                     const isCurrentAnswer = choice === current_question.answer;
-                    selectOptions += `<option value="${choice}" ${isCurrentAnswer ? 'selected' : ''}>${choice} ${isCurrentAnswer ? ' (เฉลยปัจจุบัน)' : ''}</option>`;
+                    let displayText = choice;
+                    if (isUrl(choice)) {
+                        displayText = `[รูปภาพ] ...${choice.substring(choice.length - 15)}`; // ย่อลิงก์ใน dropdown
+                    }
+
+                    selectOptions += `<option value="${choice}" ${isCurrentAnswer ? 'selected' : ''}>
+                                        ${String.fromCharCode(65 + index)}. ${displayText} ${isCurrentAnswer ? ' (เฉลยปัจจุบัน)' : ''}
+                                      </option>`;
                 });
                 $reportCorrectChoiceSelect.html(selectOptions);
 
@@ -8662,13 +8711,13 @@
                 const currentProblem = current_question.problem ? current_question.problem.trim() : '';
                 const currentAnswer = current_question.answer ? current_question.answer.trim() : '';
 
+                // (ส่วน logic หา topic เดิม ... คงไว้เหมือนเดิม)
                 for (const topicId in quizdata) {
                     if (quizdata.hasOwnProperty(topicId) && Array.isArray(quizdata[topicId])) {
                         const questionArray = quizdata[topicId];
                         const found = questionArray.some(q =>
                             q.problem.trim() === currentProblem && q.answer.trim() === currentAnswer
                         );
-
                         if (found) {
                             topic = topicId;
                             break;
@@ -8676,23 +8725,12 @@
                     }
                 }
 
-                // Get suggested choice: value from dropdown or new text
+                // ... (ส่วนตรวจสอบ input ว่าง ... คงไว้เหมือนเดิม) ...
                 if ($reportCorrectChoiceSelect.val() === 'newanswer' && !$reportNewChoiceInput.val().trim()) {
                     alert("กรุณาพิมพ์คำตอบที่ถูกต้องใหม่ในช่องด้านล่าง");
                     $reportNewChoiceInput.focus();
                     return;
                 }
-                const suggestedChoice = $reportCorrectChoiceSelect.val() === 'newanswer' ? $reportNewChoiceInput.val().trim() : $reportCorrectChoiceSelect.val();
-
-                // Get all choices in one formatted string
-                const allChoices = (current_question.choices || "").split("///").map((s, i) => {
-                    const letter = String.fromCharCode(65 + i);
-                    const choiceText = `${letter}. ${s.trim()}`;
-                    // Check if this is the current correct answer
-                    const isCurrentAnswer = s.trim() === (current_question.answer || "").trim();
-                    return isCurrentAnswer ? `${choiceText} (answer)` : choiceText;
-                }).filter(Boolean).join("\n");
-
                 const reportTextValue = $reportText.val();
                 if (reportTextValue === '') {
                     alert("กรุณาใส่เหตุผลของปัญหา");
@@ -8700,13 +8738,44 @@
                     return;
                 }
 
+                // --- ส่วนที่แก้ไขใหม่เพื่อรองรับรูปภาพ ---
 
+                // 1. จัดการคำตอบที่เสนอ (Suggested Choice)
+                let suggestedChoice = $reportCorrectChoiceSelect.val() === 'newanswer' ? $reportNewChoiceInput.val().trim() : $reportCorrectChoiceSelect.val();
+                // ถ้าคำตอบที่เลือกเป็น Link ให้แปลงเป็น URL ที่แสดงผลได้ (เผื่อ sheet เอาไปทำ IMAGE)
+                if (suggestedChoice && (suggestedChoice.includes('drive.google') || suggestedChoice.startsWith('http'))) {
+                    suggestedChoice = transformUrl(suggestedChoice);
+                }
+
+                // 2. จัดการรูปโจทย์ (Question Images)
+                // แปลงลิงก์รูปโจทย์ทั้งหมดให้เป็น URL ที่ใช้งานได้ และคั่นด้วย /// ส่งไปให้ Script
+                let questionImagesString = "";
+                if (current_question.img) {
+                    const rawImgs = current_question.img.split("///");
+                    const processedImgs = rawImgs.map(url => transformUrl(url.trim()));
+                    questionImagesString = processedImgs.join("///");
+                }
+
+                // 3. จัดการตัวเลือกทั้งหมด (All Choices)
+                const allChoices = (current_question.choices || "").split("///").map((s, i) => {
+                    const letter = String.fromCharCode(65 + i);
+                    let choiceText = s.trim();
+                    // ถ้าตัวเลือกเป็นลิงก์ ไม่ต้องทำอะไร Google Sheet จะ Auto-link เอง
+                    // แต่ถ้าอยากให้แน่ใจว่าคลิกได้ ให้ปล่อยไว้เป็น text URL ดิบๆ
+
+                    const isCurrentAnswer = s.trim() === (current_question.answer || "").trim();
+                    return `${letter}. ${isCurrentAnswer ? ' (answer)' : ''} ${choiceText}`;
+                }).join("\n");
+
+
+                // ส่งข้อมูล
                 saveReportToGoogleSheet(
                     "gimcq",
                     topic,
                     $question.text(),
-                    allChoices, // New data
-                    suggestedChoice, // New data
+                    questionImagesString,
+                    allChoices,
+                    suggestedChoice,
                     reportTextValue,
                     new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok" })
                 );
@@ -8714,6 +8783,7 @@
                 $reportCard.fadeOut();
                 $feedbackSave.text("ขอบคุณสำหรับรายงานครับ!").show().fadeOut(2000);
             });
+
             $('#cancel-report').on('click', () => $reportCard.fadeOut());
 
             // --- Progress Modal Event Listeners ---
